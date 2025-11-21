@@ -1,11 +1,11 @@
 package com.lifty.apiChatSimples.entity;
 
+
+import com.lifty.apiChatSimples.dtos.conversation.ConversationRequestDTO;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Table (name = "conversations")
 @Entity
@@ -15,30 +15,42 @@ public class Conversation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user_sender")
-    private User sender;
-
-    @ManyToOne
-    @JoinColumn(name = "id_user_receiver")
-    private User receiver;
-
-    @OneToMany(mappedBy = "conversation")
-    private List<Mensage> mensages = new ArrayList<>();
+    private String title;
 
     @CreationTimestamp
     private LocalDateTime created_at;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario_remetente")
+    private User remetente;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario_destinatario")
+    private User destinatario;
+
+
     public Conversation(){
         this.created_at = LocalDateTime.now();
     }
-    public Conversation(User sender, User receiver){
-        this.sender = sender;
-        this.receiver = receiver;
+    public Conversation(User remetente, User destinatario, String title){
+        this.remetente = remetente;
+        this.destinatario = destinatario;
+        this.title = title;
+    }
+    public Conversation(String title){
+        this.title = title;
+        this.created_at = LocalDateTime.now();
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public LocalDateTime getCreated_at() {
@@ -49,19 +61,19 @@ public class Conversation {
         this.created_at = created_at;
     }
 
-    public User getSender() {
-        return sender;
+    public User getRemetente() {
+        return remetente;
     }
 
-    public void setSender(User sender) {
-        this.sender = sender;
+    public void setRemetente(User remetente) {
+        this.remetente = remetente;
     }
 
-    public User getReceiver() {
-        return receiver;
+    public User getDestinatario() {
+        return destinatario;
     }
 
-    public void setReceiver(User receiver) {
-        this.receiver = receiver;
+    public void setDestinatario(User destinatario) {
+        this.destinatario = destinatario;
     }
 }
