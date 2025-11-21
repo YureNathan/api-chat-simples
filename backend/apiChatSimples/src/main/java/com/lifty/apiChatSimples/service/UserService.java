@@ -1,11 +1,11 @@
 package com.lifty.apiChatSimples.service;
 
-import com.lifty.apiChatSimples.dtos.user.UserRequestDTO;
-import com.lifty.apiChatSimples.dtos.user.UserResponseDTO;
+import com.lifty.apiChatSimples.dtos.UserRequestDTO;
+import com.lifty.apiChatSimples.dtos.UserResponseDTO;
 import com.lifty.apiChatSimples.entity.User;
 import com.lifty.apiChatSimples.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,15 +32,4 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserResponseDTO listUserId(Long id){
-        UserResponseDTO userResponseDTO = userRepository.findById(id)
-                .stream()
-                .map(UserResponseDTO::new)
-                .findFirst()
-                .orElseThrow(null);
-        return userResponseDTO;
-    }
-    public void deleteUser(Long id){
-       userRepository.deleteById(id);
-    }
 }

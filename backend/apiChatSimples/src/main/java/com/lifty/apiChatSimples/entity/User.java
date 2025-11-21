@@ -1,6 +1,6 @@
 package com.lifty.apiChatSimples.entity;
 
-import com.lifty.apiChatSimples.dtos.user.UserRequestDTO;
+import com.lifty.apiChatSimples.dtos.UserRequestDTO;
 import jakarta.persistence.*;
 
 @Entity
