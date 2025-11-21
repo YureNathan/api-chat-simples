@@ -1,4 +1,4 @@
-package com.lifty.apiChatSimples.dtos;
+package com.lifty.apiChatSimples.dtos.user;
 
 public record UserRequestDTO(Long id, String name) {
 
