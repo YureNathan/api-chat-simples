@@ -13,16 +13,31 @@ public class Mensage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String content;
 
     @ManyToOne
     @JoinColumn(name = "id_conversation")
-    private Conversation idConversation;
+    private Conversation conversation;
 
     @ManyToOne
     @JoinColumn(name = "id_sender")
     private User idSender;
 
+    @ManyToOne
+    @JoinColumn(name = "id_recipient")
+    private  User idRecipient;
+
+    public User getIdRecipient() {
+        return idRecipient;
+    }
+
+    public void setIdRecipient(User idRecipient) {
+        this.idRecipient = idRecipient;
+    }
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String content;
+
+    @Column(name = "date_time", nullable = false)
     @CreationTimestamp
     private LocalDateTime sentAt;
 
@@ -35,11 +50,11 @@ public class Mensage {
     }
 
     public Conversation getIdConversation() {
-        return idConversation;
+        return conversation;
     }
 
     public void setIdConversation(Conversation idConversation) {
-        this.idConversation = idConversation;
+        this.conversation = idConversation;
     }
 
     public User getIdSender() {
@@ -64,5 +79,14 @@ public class Mensage {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Mensage() {}
+
+    public Mensage(Conversation conversation, User idSender, User idRecipient, String content) {
+        this.conversation = conversation;
+        this.idSender = idSender;
+        this.idRecipient = idRecipient;
+        this.content = content;
     }
 }
