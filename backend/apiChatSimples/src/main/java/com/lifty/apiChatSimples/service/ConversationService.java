@@ -2,8 +2,8 @@ package com.lifty.apiChatSimples.service;
 
 import com.lifty.apiChatSimples.dtos.conversation.ConversationRequestDTO;
 import com.lifty.apiChatSimples.dtos.conversation.ConversationResponseDTO;
-import com.lifty.apiChatSimples.entity.Conversation;
-import com.lifty.apiChatSimples.entity.User;
+import com.lifty.apiChatSimples.entities.Conversation;
+import com.lifty.apiChatSimples.entities.User;
 import com.lifty.apiChatSimples.repository.ConversationRepository;
 import com.lifty.apiChatSimples.repository.UserRepository;
 import org.springframework.stereotype.Service;
