@@ -4,8 +4,15 @@ import com.lifty.apiChatSimples.entity.Conversation;
 
 import java.time.LocalDateTime;
 
-public record ConversationResponseDTO(Long id, String title, LocalDateTime created_at) {
+public record ConversationResponseDTO(Long id, Long senderId, String nameSender, Long receiverId, String nameReceiver, LocalDateTime created_at) {
     public ConversationResponseDTO(Conversation conversation) {
-        this(conversation.getId(), conversation.getTitle(), conversation.getCreated_at());
+        this(
+                conversation.getId(),
+                conversation.getSender().getId(),
+                conversation.getSender().getName(),
+                conversation.getReceiver().getId(),
+                conversation.getReceiver().getName(),
+                conversation.getCreated_at()
+        );
     }
 }

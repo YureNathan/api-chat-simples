@@ -23,14 +23,18 @@ public class ConversationService {
     }
 
     public ConversationResponseDTO createConversation(ConversationRequestDTO conversationRequestDTO){
-       User remetente = buscaUsuario(conversationRequestDTO.remetente());
-       User destinatario = buscaUsuario(conversationRequestDTO.destinatario());
-       Conversation conversation = new Conversation(remetente,destinatario,conversationRequestDTO.title());
-        conversation = conversationRepository.save(conversation);
-       return new ConversationResponseDTO(conversation);
+        User sender = searchUser(conversationRequestDTO.idSender());
+        User receiver = searchUser(conversationRequestDTO.idReceiver());
+
+        Conversation conversation = conversationRepository
+                .findConversationBetweenUsers(sender.getId(), receiver.getId())
+                .orElseGet(() -> conversationRepository.save(new Conversation(sender,receiver)
+                ));
+
+        return new ConversationResponseDTO(conversation);
     }
 
-    private User buscaUsuario(Long userId) {
+    private User searchUser(Long userId) {
         return userRepository.findById(userId).orElseThrow(()-> new RuntimeException(String
                 .format("Usuário com id %d não foi encontrado", userId)));
     }
