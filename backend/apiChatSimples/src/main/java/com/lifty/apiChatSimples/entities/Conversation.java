@@ -1,4 +1,4 @@
-package com.lifty.apiChatSimples.entity;
+package com.lifty.apiChatSimples.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;

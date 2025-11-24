@@ -1,6 +1,6 @@
 package com.lifty.apiChatSimples.repository;
 
-import com.lifty.apiChatSimples.entity.User;
+import com.lifty.apiChatSimples.entities.User;
 import jakarta.persistence.Entity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

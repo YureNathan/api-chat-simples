@@ -1,9 +1,0 @@
-package com.lifty.apiChatSimples.dtos;
-import com.lifty.apiChatSimples.entity.User;
-
-public record UserResponseDTO(Long id, String name) {
-    public UserResponseDTO(User user){
-        this(user.getId(), user.getName());
-
-    }
-}

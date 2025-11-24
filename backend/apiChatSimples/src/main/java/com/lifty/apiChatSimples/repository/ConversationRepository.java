@@ -1,6 +1,6 @@
 package com.lifty.apiChatSimples.repository;
 
-import com.lifty.apiChatSimples.entity.Conversation;
+import com.lifty.apiChatSimples.entities.Conversation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

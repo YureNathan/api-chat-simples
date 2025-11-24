@@ -22,7 +22,7 @@ public class MensageController {
         this.mensageService = mensageService;
     }
 
-    @GetMapping("/conversation/{id}/mensages")
+    @GetMapping("{id}/mensages")
     public ResponseEntity<List<MensageResponseDTO>> listMensagesByConversationId(@PathVariable Long id){
         List<MensageResponseDTO> mensageResponseDTOS = mensageService.listMensagesByConversationId(id);
         return ResponseEntity.ok(mensageResponseDTOS);

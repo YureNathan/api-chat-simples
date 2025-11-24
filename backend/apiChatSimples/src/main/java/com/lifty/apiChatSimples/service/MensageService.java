@@ -2,10 +2,9 @@ package com.lifty.apiChatSimples.service;
 
 import com.lifty.apiChatSimples.dtos.mensage.MensageRequestDTO;
 import com.lifty.apiChatSimples.dtos.mensage.MensageResponseDTO;
-import com.lifty.apiChatSimples.dtos.user.UserResponseDTO;
-import com.lifty.apiChatSimples.entity.Conversation;
-import com.lifty.apiChatSimples.entity.Mensage;
-import com.lifty.apiChatSimples.entity.User;
+import com.lifty.apiChatSimples.entities.Conversation;
+import com.lifty.apiChatSimples.entities.Mensage;
+import com.lifty.apiChatSimples.entities.User;
 import com.lifty.apiChatSimples.repository.ConversationRepository;
 import com.lifty.apiChatSimples.repository.MensageRepository;
 import com.lifty.apiChatSimples.repository.UserRepository;
@@ -46,9 +45,10 @@ public class MensageService {
                 .collect(Collectors.toList());
     }
 
-    public List<MensageResponseDTO> listMensagesByConversationId(Long id_conversation){
+    public List<MensageResponseDTO> listMensagesByConversationId(Long id) {
         List<Mensage> mensages = mensageRepository
-                .findByConversationOrderBySentAtAsc(id_conversation);
+                .findByConversationIdOrderBySentAtAsc(id);
+
         return mensages.stream()
                 .map(MensageResponseDTO::new)
                 .toList();

@@ -1,6 +1,6 @@
 package com.lifty.apiChatSimples.dtos.conversation;
 
-import com.lifty.apiChatSimples.entity.Conversation;
+import com.lifty.apiChatSimples.entities.Conversation;
 
 import java.time.LocalDateTime;
 

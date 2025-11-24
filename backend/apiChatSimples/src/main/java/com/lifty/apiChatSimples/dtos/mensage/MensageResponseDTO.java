@@ -1,6 +1,6 @@
 package com.lifty.apiChatSimples.dtos.mensage;
 
-import com.lifty.apiChatSimples.entity.Mensage;
+import com.lifty.apiChatSimples.entities.Mensage;
 
 import java.time.LocalDateTime;
 
