@@ -30,10 +30,14 @@ public class MensageService {
         Conversation conversation = conversationRepository.findById(mensageRequestDTO.conversationId())
                 .orElseThrow(() -> new RuntimeException("Conversa não encontrada!.. "));
 
-        User sender = conversation.getSender();
-        User receiver = conversation.getReceiver();
+        User sender = userRepository.findById(mensageRequestDTO.senderId())
+                .orElseThrow(()-> new RuntimeException("Remetente não encontrado"));
+
+        User receiver = userRepository.findById(mensageRequestDTO.recipientId())
+                .orElseThrow(()-> new RuntimeException("Destinatário não encontrado"));
 
         Mensage mensage = new Mensage(conversation, sender, receiver, mensageRequestDTO.content());
+
         mensage = mensageRepository.save(mensage);
         return new MensageResponseDTO(mensage);
     }
