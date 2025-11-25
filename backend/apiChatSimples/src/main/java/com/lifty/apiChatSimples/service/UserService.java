@@ -7,7 +7,6 @@ import com.lifty.apiChatSimples.repository.ConversationRepository;
 import com.lifty.apiChatSimples.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,19 +27,19 @@ public class UserService {
         return new UserResponseDTO(user);
     }
 
-    public List<UserResponseDTO> listAllUser(){
+    public List<UserResponseDTO> listAllUsers(){
         return userRepository.findAll()
                 .stream()
                 .map(UserResponseDTO::new)
                 .collect(Collectors.toList());
     }
 
-    public UserResponseDTO listUserId(Long id){
+    public UserResponseDTO findUserById(Long id){
         UserResponseDTO userResponseDTO = userRepository.findById(id)
                 .stream()
                 .map(UserResponseDTO::new)
                 .findFirst()
-                .orElseThrow(null);
+                .orElseThrow(()-> new RuntimeException("Usuário não encontrado!"));
         return userResponseDTO;
     }
     @Transactional
@@ -57,7 +56,6 @@ public class UserService {
             if(userRequestDTO.name() != null) {
                 user.setName(userRequestDTO.name());
             }
-            userRepository.save(user);
         }
     }
 

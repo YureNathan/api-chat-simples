@@ -8,6 +8,7 @@ import com.lifty.apiChatSimples.entities.User;
 import com.lifty.apiChatSimples.repository.ConversationRepository;
 import com.lifty.apiChatSimples.repository.MensageRepository;
 import com.lifty.apiChatSimples.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class MensageService {
         this.userRepository = userRepository;
         this.conversationRepository = conversationRepository;
     }
-
+    @Transactional
     public MensageResponseDTO sendMensage(MensageRequestDTO mensageRequestDTO) {
         Conversation conversation = conversationRepository.findById(mensageRequestDTO.conversationId())
                 .orElseThrow(() -> new RuntimeException("Conversa não encontrada!.. "));
@@ -46,7 +47,7 @@ public class MensageService {
         List<Mensage> mensages = mensageRepository.findAll();
         return mensages.stream()
                 .map(MensageResponseDTO::new)
-                .collect(Collectors.toList());
+               .toList();
     }
 
     public List<MensageResponseDTO> listMensagesByConversationId(Long id) {

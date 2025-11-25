@@ -7,9 +7,10 @@ import com.lifty.apiChatSimples.entities.User;
 import com.lifty.apiChatSimples.repository.ConversationRepository;
 import com.lifty.apiChatSimples.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 public class ConversationService {
@@ -21,10 +22,10 @@ public class ConversationService {
         this.conversationRepository = conversationRepository;
         this.userRepository = userRepository;
     }
-
+    @Transactional
     public ConversationResponseDTO createConversation(ConversationRequestDTO conversationRequestDTO){
-        User sender = searchUser(conversationRequestDTO.idSender());
-        User receiver = searchUser(conversationRequestDTO.idReceiver());
+        User sender = findUserOrThrow(conversationRequestDTO.idSender());
+        User receiver = findUserOrThrow(conversationRequestDTO.idReceiver());
 
         Conversation conversation = conversationRepository
                 .findConversationBetweenUsers(sender.getId(), receiver.getId())
@@ -34,7 +35,7 @@ public class ConversationService {
         return new ConversationResponseDTO(conversation);
     }
 
-    private User searchUser(Long userId) {
+    private User findUserOrThrow(Long userId) {
         return userRepository.findById(userId).orElseThrow(()-> new RuntimeException(String
                 .format("Usuário com id %d não foi encontrado", userId)));
     }
@@ -43,6 +44,6 @@ public class ConversationService {
         return conversationRepository.findAll()
                 .stream()
                 .map(ConversationResponseDTO :: new)
-                .collect(Collectors.toList());
+               .toList();
     }
 }
