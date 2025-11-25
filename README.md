@@ -8,14 +8,11 @@ A proposta deste projeto é desenvolver uma **API RESTful organizada, escalável
 
 No backend tem como objetivo simular o funcionamento essencial de um sistema de chat, incluindo:
 
-- Cadastro e gerenciamento de usuários  
+- Cadastro de usuários  
 - Criação automática e única de conversas entre dois usuários 
 - Envio de mensagens atreladas às conversas 
 - Listagem de conversas e mensagens  
-- Modelagem clara da camada de domínio  
-- API padronizada com DTOs  
-- Integração futura com WebSockets (pré-preparada)
-
+- API padronizada com DTOs 
 ---
 
 # ✅ Funcionalidades da Aplicação
@@ -177,12 +174,11 @@ GET /user
 
 ---
 
-#  Diferenciais do Projeto
+#  Caracteristicas do Projeto
 
 - Uso correto de DTOs (Records)
 - Arquitetura em camadas
 - IDs automáticos
-- Validações e tratamento de exceção
 - Evita duplicidade de conversas
 - Query JPQL personalizada
 - Timestamps automatizados
@@ -194,6 +190,6 @@ GET /user
 
 - Implementar WebSocket para mensagens em tempo real  
 - Criar sistema de autenticação com JWT  
-- Melhorar testes unitários  
+- Criar testes unitários  
 
 ---
